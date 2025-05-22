@@ -42,32 +42,29 @@ logging.basicConfig(
     handlers=[file_handler, stream_handler]
 )
 logger = logging.getLogger(__name__)
+API_ID = st.secrets["telegram"]["api_id"]
+API_HASH = st.secrets["telegram"]["api_hash"]
+PHONE_NUMBER = st.secrets["telegram"]["phone_number"]
+SESSION_STRING = st.secrets["telegram"]["session_string"]
 
-# Credentials and fixed configuration
-# Credentials and fixed configuration
-API_ID = 28690093
-API_HASH = "aa512841e37c5ccb5a8ac494395bb373"
-PHONE_NUMBER = "+6285161054271"
-SESSION_STRING = "1BVtsOMEBu7h6_D9JCd_oRPQCuAUiPJSP9h__0TzsGMO00lm9DnpmXBhZ7j-VzQKPdT-ZnvTNE_NcD68E53iPpqddxxEOf7E09sezLMdP15XpavmqVFKng1hTjp5219cNya5_pbLJzMmnY8Az3BVPfZ4-r0hyAmGAfYaYpIOLvPsTuDWuRHVPnXhFHh7j4QHmvEc1veptL3ldkoYRLg6_jym0HUfmvWX4beiFsZk8Yq1cWhVc0krCGU2cwvcLFtu33oBBL6ySBD1JI_1NAMZhy3xkxYJ7SGtydfMt-9Y4u2Sq2-OJcA_SG_5RiaYg60EOnlmL-l8EiOvFAxiFDEZMCu1idohhbRc="
-# Source Channels untuk sinyal trading
-SOURCE_CHANNEL_ID = -1002051092635      # Channel untuk sinyal trading
+# Channel untuk sinyal trading
+SOURCE_CHANNEL_ID = st.secrets["channels"]["source_channel_id"]
 
 # Source Channels untuk berita crypto
-SOURCE_CHANNEL_ID_2 = -1001685592361    # Crypto News
-SOURCE_CHANNEL_ID_3 = -1002183174454    # TU Crypto News 
-SOURCE_CHANNEL_ID_4 = -1001350475252    # Crypto Inssider
-SOURCE_CHANNEL_ID_5 = -1001976111514    # Bloomberg Crypto
-SOURCE_CHANNEL_ID_6 = -1001770853167
+SOURCE_CHANNEL_ID_2 = st.secrets["channels"]["crypto_news_1"]   # Crypto News
+SOURCE_CHANNEL_ID_3 = st.secrets["channels"]["crypto_news_2"]   # TU Crypto News
+SOURCE_CHANNEL_ID_4 = st.secrets["channels"]["crypto_news_3"]   # Crypto Insider
+SOURCE_CHANNEL_ID_5 = st.secrets["channels"]["crypto_news_4"]   # Bloomberg Crypto
+SOURCE_CHANNEL_ID_6 = st.secrets["channels"]["crypto_news_5"]   # Financial World Updates
 
 # Topic IDs
-NEWS_TOPIC_ID = 2194  # Topic ID untuk Berita Crypto
+NEWS_TOPIC_ID = st.secrets["topics"]["news_topic_id"]           # Topic ID untuk Berita Crypto
+NEW_TOPIC_ID = st.secrets["topics"]["new_topic_id"]
+SIGNAL_CALL_TOPIC_ID = st.secrets["topics"]["signal_call_topic_id"]  # Topic ID untuk NEW SIGNAL
+SIGNAL_UPDATE_TOPIC_ID = st.secrets["topics"]["signal_update_topic_id"]  # Topic ID untuk Signal Update
 
-NEW_TOPIC_ID = 2926
-
-# Channel dan Topic IDs
-GROUP_CHANNEL_ID = -1002670915863  # ID grup utama
-SIGNAL_CALL_TOPIC_ID = 39  # Topic ID untuk NEW SIGNAL
-SIGNAL_UPDATE_TOPIC_ID = 38  # Topic ID untuk Signal Update
+# Group Channel
+GROUP_CHANNEL_ID = st.secrets["channels"]["group_channel_id"]   # ID grup utama
 
 # Files to store verification code
 VERIFICATION_CODE_FILE = "verification_code.txt"
