@@ -12,7 +12,7 @@ import aiohttp
 
 # Streamlit page configuration
 st.set_page_config(
-    page_title="Telegram Channel Forwarder",
+    page_title="1ux4u4nt-t124d9",
     page_icon="📱",
     layout="wide"
 )
