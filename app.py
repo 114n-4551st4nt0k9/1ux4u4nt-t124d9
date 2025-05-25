@@ -47,24 +47,23 @@ API_HASH = st.secrets["telegram"]["api_hash"]
 PHONE_NUMBER = st.secrets["telegram"]["phone_number"]
 SESSION_STRING = st.secrets["telegram"]["session_string"]
 
-# Channel untuk sinyal trading
 SOURCE_CHANNEL_ID = st.secrets["channels"]["source_channel_id"]
 
 # Source Channels untuk berita crypto
-SOURCE_CHANNEL_ID_2 = st.secrets["channels"]["crypto_news_1"]   # Crypto News
-SOURCE_CHANNEL_ID_3 = st.secrets["channels"]["crypto_news_2"]   # TU Crypto News
-SOURCE_CHANNEL_ID_4 = st.secrets["channels"]["crypto_news_3"]   # Crypto Insider
-SOURCE_CHANNEL_ID_5 = st.secrets["channels"]["crypto_news_4"]   # Bloomberg Crypto
-SOURCE_CHANNEL_ID_6 = st.secrets["channels"]["crypto_news_5"]   # Financial World Updates
+SOURCE_CHANNEL_ID_2 = st.secrets["channels"]["crypto_news_1"]  
+SOURCE_CHANNEL_ID_3 = st.secrets["channels"]["crypto_news_2"]   
+SOURCE_CHANNEL_ID_4 = st.secrets["channels"]["crypto_news_3"]  
+SOURCE_CHANNEL_ID_5 = st.secrets["channels"]["crypto_news_4"]  
+SOURCE_CHANNEL_ID_6 = st.secrets["channels"]["crypto_news_5"]  
 
-# Topic IDs
-NEWS_TOPIC_ID = st.secrets["topics"]["news_topic_id"]           # Topic ID untuk Berita Crypto
+
+NEWS_TOPIC_ID = st.secrets["topics"]["news_topic_id"]          
 NEW_TOPIC_ID = st.secrets["topics"]["new_topic_id"]
-SIGNAL_CALL_TOPIC_ID = st.secrets["topics"]["signal_call_topic_id"]  # Topic ID untuk NEW SIGNAL
-SIGNAL_UPDATE_TOPIC_ID = st.secrets["topics"]["signal_update_topic_id"]  # Topic ID untuk Signal Update
+SIGNAL_CALL_TOPIC_ID = st.secrets["topics"]["signal_call_topic_id"] 
+SIGNAL_UPDATE_TOPIC_ID = st.secrets["topics"]["signal_update_topic_id"] 
 
-# Group Channel
-GROUP_CHANNEL_ID = st.secrets["channels"]["group_channel_id"]   # ID grup utama
+
+GROUP_CHANNEL_ID = st.secrets["channels"]["group_channel_id"]  
 
 # Files to store verification code
 VERIFICATION_CODE_FILE = "verification_code.txt"
