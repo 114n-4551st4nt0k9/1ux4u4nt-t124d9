@@ -587,7 +587,7 @@ async def run_client():
                     # Create custom message
                     if coin_name and entry_price and (targets or stop_losses):
                         # Header
-                        custom_text = f"🆕 NEW SIGNAL: [{coin_name}](https://www.tradingview.com/symbols/{coin_name}USDT/) 🆕\n\n"
+                        custom_text = f"🆕 NEW SIGNAL: [{coin_name}](https://www.tradingview.com/symbols/{coin_name}/) 🆕\n\n"
                         
                         # Extract and add risk information if available
                         risk_info = extract_risk_info(message.text)
