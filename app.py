@@ -437,7 +437,7 @@ def create_win_rate_table(recap_data):
     if total_signals == 0:
         win_rate = 0
     else:
-        win_rate = (take_profits / total_signals) * 100
+        win_rate = (take_profits / (take_profits + stop_losses)) * 100
     
     table = "📊 Trading Performance Analysis 📊\n\n"
     table += "Metric                  Value       Percentage\n"
