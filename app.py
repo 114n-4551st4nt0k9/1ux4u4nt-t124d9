@@ -431,6 +431,7 @@ def extract_daily_recap_data(text):
 # Function to create win rate table
 
 # Function to create win rate table - FIXED VERSION
+# Function to create win rate table - FIXED VERSION
 def create_win_rate_table(recap_data):
     total_signals = recap_data['total_signals']
     take_profits = recap_data['hitted_take_profits']
@@ -452,10 +453,6 @@ def create_win_rate_table(recap_data):
     
     # Show win rate from closed positions only
     table += f"Win Rate               {take_profits}/{closed_positions}     {win_rate:.2f}%\n"
-    
-    # Profit/Loss ratio (same calculation, but clearer)
-    if closed_positions > 0:
-        table += f"Profit/Loss Ratio      {take_profits}/{stop_losses}     {win_rate:.2f}%\n"
     
     # Running signals percentage from total signals
     if total_signals > 0:
