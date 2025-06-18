@@ -744,18 +744,18 @@ async def run_client():
                     
                 if message.text:
                     if is_new_announcement:
-                        custom_text = message.text + "\n\n**Source: Walter Bloomberg**"
+                        custom_text = message.text + ""
                     
                     else:
                     
                         coin_match = re.search(r'#([A-Z]{3,})', message.text)
                         if coin_match:
                             coin = coin_match.group(1)
-                        custom_text = message.text + "\n\n**Source: Walter Bloomberg**"
+                        custom_text = message.text + ""
 
                             
                 else:
-                    custom_text = "📰 CRYPTO NEWS UPDATE 📰\n\n**Source: Walter Bloomberg**"
+                    custom_text = ""
                     
                 if message.media:
                     await client.send_file(
