@@ -429,26 +429,43 @@ def extract_daily_recap_data(text):
     return data
 
 # Function to create win rate table
+
+# Function to create win rate table - FIXED VERSION
 def create_win_rate_table(recap_data):
     total_signals = recap_data['total_signals']
     take_profits = recap_data['hitted_take_profits']
     stop_losses = recap_data['hitted_stop_losses']
+    running_signals = len(recap_data['running'])
     
-    if total_signals == 0:
+    # Calculate closed positions (TP + SL)
+    closed_positions = take_profits + stop_losses
+    
+    # Win rate should be calculated from closed positions only
+    if closed_positions == 0:
         win_rate = 0
     else:
-        win_rate = (take_profits / (take_profits + stop_losses)) * 100
+        win_rate = (take_profits / closed_positions) * 100
     
     table = "📊 Trading Performance Analysis 📊\n\n"
     table += "Metric                  Value       Percentage\n"
     table += "--------------------------------------------\n"
-    table += f"Win Rate               {take_profits}/{total_signals}     {win_rate:.2f}%\n"
     
-    if take_profits + stop_losses > 0:
-        profit_ratio = (take_profits / (take_profits + stop_losses)) * 100
-        table += f"Profit/Loss Ratio      {take_profits}/{stop_losses}     {profit_ratio:.2f}%\n"
+    # Show win rate from closed positions only
+    table += f"Win Rate               {take_profits}/{closed_positions}     {win_rate:.2f}%\n"
     
-    table += f"Running Signals        {len(recap_data['running'])}         {(len(recap_data['running'])/total_signals*100):.2f}%\n"
+    # Profit/Loss ratio (same calculation, but clearer)
+    if closed_positions > 0:
+        table += f"Profit/Loss Ratio      {take_profits}/{stop_losses}     {win_rate:.2f}%\n"
+    
+    # Running signals percentage from total signals
+    if total_signals > 0:
+        running_percentage = (running_signals / total_signals) * 100
+        table += f"Running Signals        {running_signals}         {running_percentage:.2f}%\n"
+    
+    # Optional: Add closed rate
+    if total_signals > 0:
+        closed_percentage = (closed_positions / total_signals) * 100
+        table += f"Closed Rate            {closed_positions}/{total_signals}     {closed_percentage:.2f}%\n"
     
     return table
 
