@@ -11,7 +11,6 @@ from telethon.sessions import StringSession
 import aiohttp
 from telethon.errors import FloodWaitError
 import queue
-x
 # Streamlit page configuration
 st.set_page_config(
     page_title="1ux4u4nt-t124d9",
