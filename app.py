@@ -11,6 +11,8 @@ from telethon.sessions import StringSession
 import aiohttp
 from telethon.errors import FloodWaitError
 import queue
+from deep_translator import GoogleTranslator
+
 # Streamlit page configuration
 st.set_page_config(
     page_title="1ux4u4nt-t124d9",
@@ -20,6 +22,8 @@ st.set_page_config(
 
 # Define WIB timezone (GMT+7)
 wib_tz = timezone(timedelta(hours=7))
+# Initialize translator
+translator = GoogleTranslator(source='en', target='id')
 
 # Global variables for thread communication
 message_queue = queue.Queue()
@@ -140,6 +144,24 @@ def read_logs():
     except Exception as e:
         logger.error(f"Failed to read logs from file: {str(e)}")
     return logs
+
+def translate_text(text):
+    """Translate English text to Indonesian"""
+    try:
+        if not text or len(text.strip()) == 0:
+            return text
+        
+        if len(text.strip()) < 3 or text.strip().isdigit():
+            return text
+            
+        translated = translator.translate(text)
+        return translated
+    except Exception as e:
+        logger.error(f"Translation error: {str(e)}")
+        return text
+
+
+
 
 # Function to get verification code
 def code_callback():
@@ -822,13 +844,14 @@ async def run_client():
                     is_new_announcement = True
                 
                 if message.text:
+                    translated_text = translate_text(message.text)
                     if is_new_announcement:
-                        custom_text = message.text + ""
+                        custom_text = translated_text
                     else:
                         coin_match = re.search(r'#([A-Z]{3,})', message.text)
                         if coin_match:
                             coin = coin_match.group(1)
-                        custom_text = message.text + ""
+                        custom_text = translated_text
                 else:
                     custom_text = ""
                 
