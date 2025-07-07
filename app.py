@@ -844,17 +844,31 @@ async def run_client():
                     is_new_announcement = True
                 
                 if message.text:
-                    translated_text = translate_text(message.text)
-                    if is_new_announcement:
+                    import re 
+                    links = re.findall(r'(https?://[^\s\)]+)', message.text)
+                    text_without_links = message.text
+                    for link in links:
+                        text_without_links = re.sub(rf'\[\.\.\.\]\s*\(\s*{re.escape(link)}\s*\)', '', text_without_links)
+                        text_without_links = re.sub(rf'\(\s*{re.escape(link)}\s*\)', '', text_without_links)
+                        text_without_links = re.sub(re.escape(link), '', text_without_links)
+                    
+                    text_without_links = re.sub(r'\[\.\.\.\]', '', text_without_links)
+                    text_without_links = re.sub(r'\s+', ' ', text_without_links).strip()
+
+                    translated_text = translate_text(text_without_links)
+                    if links:
+                        custom_text = f"{translated_text}\n{links[0]}"
+                    else:
                         custom_text = translated_text
+                    
+                    if is_new_announcement:
+                        pass
                     else:
                         coin_match = re.search(r'#([A-Z]{3,})', message.text)
                         if coin_match:
                             coin = coin_match.group(1)
-                        custom_text = translated_text
                 else:
                     custom_text = ""
-                
                 success = False
                 if message.media:
                     success = await send_file_with_retry(
@@ -871,18 +885,17 @@ async def run_client():
                         message=custom_text,
                         reply_to=NEW_TOPIC_ID
                     )
-                
                 if success:
-                    log_msg = f"Berita crypto diteruskan ke topik Berita"
+                    log_msg = f"Berita crypto diteruskan ke topik Berita (translated with hidden link preview)"
                     logger.info(log_msg)
                     write_log(log_msg)
                     bot_stats.increment()
-                    
+
             except Exception as e:
                 error_msg = f"Error meneruskan berita crypto: {str(e)}"
                 logger.error(error_msg)
                 write_log(error_msg, True)
-        
+
         @client.on(events.NewMessage(chats=SOURCE_CHANNEL_ID_6))
         async def crypto_news_handler6(event):
             try:
